@@ -1,17 +1,19 @@
 # React Native - Prog Mob 2
 
 ## Visão eral
-O sistema é responsável por...
+O sistema é responsável pelo controle dos alunos cadastrados e que responderam o cadastro do questionário.
 
 ### Papéis
 - Administrador
-- Usuário
+- Aluno
 ### Requisitos Funcionais
 
-- Administrador
-  - O administrador pode...
-- Usuário
-  - O usuário pode...
+- Administrador pode
+  - Cadastrar o aluno
+  - Visualizar todos os questionários respondidos. 
+- Aluno pode:
+  - Editar o seu cadastro
+  - Responder o questionário
 
 ## 🚀 Instalação
 ```sh
