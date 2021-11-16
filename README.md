@@ -1,24 +1,60 @@
-# React Native - Prog Mob 2
+# React Native - EDANE
 
-## Visão eral
-O sistema é responsável pelo controle dos alunos cadastrados e que responderam o cadastro do questionário.
+## Visão Geral
+<p align="justify">
+O sistema se baseia no site do ENADE, seguindo algumas funcionalidades. Ele gerencia os alunos que irão participar de uma edição da prova, indicando seu local e uma avaliação de seus estudos antes da realização do teste. Por fim, o administrador pode vincular os alunos aos testes e visualizar o relatório dos questionários preenchidos, como forma de acompanhar o empenho de seus alunos nesta etapa.
+</p>
 
 ### Papéis
 - Administrador
 - Aluno
 ### Requisitos Funcionais
 
-- Administrador pode
-  - Cadastrar o aluno
-  - Visualizar todos os questionários respondidos. 
+- Administrador pode:
+  - Gerenciar Login e Senha dos alunos 
+  - Inscrever o aluno em uma prova
+  - Baixar relatório dos alunos que responderam o questionário
 - Aluno pode:
-  - Editar o seu cadastro
+  - Completar/Editar o seu cadastro, incluindo sua foto
   - Responder o questionário
+  - Acessar local de prova
+  - Baixar comprovante de inscrição
 
 ## 🚀 Instalação
+Primeiro clone o projeto, digitando:
+```sh
+  git clone https://github.com/victorkoji/react_native_prog_mob_2.git
+```
+Ao finalizar, instale as dependências do projeto:
 ```sh
   npm install
 ```
+Para executar em um dispositivo ou emulador Android, digite:
+```sh
+  npm run android
+```
+Caso queira executar em um dispositivo ou emulador iOS, digite:
+```sh
+  npm run ios
+```
+Por fim, caso queira executar em um navegador web, digite:
+```sh
+  npm run web
+```
+
+## 🛠 Tecnologias
+
+As seguintes ferramentas foram usadas na construção do projeto:
+- [React Native](https://reactnative.dev/)
+
+- [Expo](https://expo.dev/)
+
+- [Typescript](https://www.typescriptlang.org/)
+
+- [Sqlite](https://www.sqlite.org/index.html)
+
+- [React Native Elements](https://reactnativeelements.com/)
+
 ## 🤝 Colaboradores
 
 <table>
