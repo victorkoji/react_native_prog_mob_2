@@ -1,6 +1,6 @@
 # React Native - EDANE
 
-## Visão Geral
+## 📜Visão Geral
 <p align="justify">
 O sistema se baseia no site do ENADE, seguindo algumas funcionalidades. Ele gerencia os alunos que irão participar de uma edição da prova, indicando seu local e uma avaliação de seus estudos antes da realização do teste. Por fim, o administrador pode vincular os alunos aos testes e visualizar o relatório dos questionários preenchidos, como forma de acompanhar o empenho de seus alunos nesta etapa.
 </p>
