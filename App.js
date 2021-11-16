@@ -6,9 +6,20 @@ import Home from './src/screens/Home/Index';
 import Login from './src/screens/Login/Index';
 import Register from './src/screens/Register/Index';
 
+import AlunoService from './src/database/services/alunoService';
+import DatabaseInit from './src/database/default';
+
 const Stack = createNativeStackNavigator();
 export default class App extends React.Component {
-  render () {
+  constructor(props) {
+    super(props);
+    new DatabaseInit
+    AlunoService.findAll().then((response) => {
+      console.log(response)
+    })
+  }
+
+  render() {
     return (
       <NavigationContainer>
         <Stack.Navigator>
