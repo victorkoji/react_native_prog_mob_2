@@ -38,10 +38,6 @@ Caso queira executar em um dispositivo ou emulador iOS, digite:
 ```sh
   npm run ios
 ```
-Por fim, caso queira executar em um navegador web, digite:
-```sh
-  npm run web
-```
 
 ## 🛠 Tecnologias
 
@@ -54,7 +50,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 - [Sqlite](https://www.sqlite.org/index.html)
 
-- [React Native Elements](https://reactnativeelements.com/)
+- [RNUI Lib](https://wix.github.io/react-native-ui-lib/docs/RadioButton)
 
 ## 🤝 Colaboradores
 
