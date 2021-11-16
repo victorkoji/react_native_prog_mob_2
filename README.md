@@ -13,6 +13,7 @@ O sistema se baseia no site do ENADE, seguindo algumas funcionalidades. Ele gere
 - Administrador pode:
   - Gerenciar Login e Senha dos alunos 
   - Inscrever o aluno em uma prova
+  - Visualizar individualmente o questionário do aluno 
   - Baixar relatório dos alunos que responderam o questionário
 - Aluno pode:
   - Completar/Editar o seu cadastro, incluindo sua foto
