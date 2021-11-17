@@ -50,7 +50,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 - [Sqlite](https://www.sqlite.org/index.html)
 
-- [RNUI Lib](https://wix.github.io/react-native-ui-lib/docs/RadioButton)
+- [RNUI](https://wix.github.io/react-native-ui-lib/)
 
 ## 🤝 Colaboradores
 
