@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { Input, Button } from 'react-native-elements';
+import React, { useState } from 'react';
+import { Button, Incubator } from 'react-native-ui-lib';
 import { Text, Alert, View } from 'react-native';
 import { Style } from './Style';
+const {TextField} = Incubator;
 
 export default function Home({navigation}) {
 
@@ -20,13 +20,13 @@ export default function Home({navigation}) {
   return (
     <View style={Style.container}>
       <Text>Login</Text>
-      <Input
+      <TextField
         placeholder='email@gmail.com'
         leftIcon={{ name: 'email' }}
         onChangeText={text => setEmail(text)}
       />
 
-      <Input
+      <TextField
         placeholder='password'
         leftIcon={{ name: 'lock' }}
         onChangeText={text => setPassword(text)}
@@ -34,7 +34,7 @@ export default function Home({navigation}) {
       />
 
       <Button
-        title="Entrar"
+        label="Entrar"
         onPress={() => onLogin()}
       />
     </View>
