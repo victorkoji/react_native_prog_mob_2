@@ -1,16 +1,17 @@
 import React from 'react';
-import { Text, View, Button } from 'react-native';
+
+import { View } from 'react-native';
+import { Button, Checkbox, Assets, Text, Colors, Spacings } from 'react-native-ui-lib';
 
 import { Style } from './Style';
 
-export default function Home({navigation}) {
+export default function Home({ navigation }) {
   return (
     <View style={Style.container}>
-      <Text>Home Screen</Text>
       <Button
-        title="Go to Login"
-        onPress={() => navigation.navigate('Login')}>
-      </Button>
+        label="Sair"
+        onPress={() => navigation.navigate('SignedOut')}
+      />
     </View>
   );
 }

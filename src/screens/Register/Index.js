@@ -3,7 +3,7 @@ import { Text, View, Button } from 'react-native';
 
 import { Style } from './Style';
 
-export default function Home({navigation}) {
+export default function Register({navigation}) {
   return (
     <View style={Style.container}>
       <Text>Register Screen</Text>

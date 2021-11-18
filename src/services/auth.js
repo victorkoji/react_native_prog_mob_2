@@ -1,11 +1,11 @@
-const TOKEN_KEY = "@prog-mob-token";
-const USER_KEY = "@prog-mob-user";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export const login = (token) => localStorage.setItem(TOKEN_KEY, token)
-export const isAuthenticated = () => localStorage.getItem(TOKEN_KEY) !== null;
-export const getToken = () => localStorage.getItem(TOKEN_KEY);
-export const setUser = (user) => localStorage.setItem(TOKEN_KEY, JSON.stringify(user))
-export const logout = () => {
-    localStorage.removeItem(TOKEN_KEY)
-    localStorage.removeItem(USER_KEY)
+export const TOKEN_KEY = "@EDANE:token";
+
+export const onSignIn = () => AsyncStorage.setItem(TOKEN_KEY, "true");
+export const onSignOut = () => AsyncStorage.removeItem(TOKEN_KEY);
+export const isSignedIn = async () => {
+    const token = await AsyncStorage.getItem(TOKEN_KEY);
+
+    return (token !== null) ? true : false;
 };

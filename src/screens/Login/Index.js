@@ -4,7 +4,7 @@ import { Text, Alert, View } from 'react-native';
 import { Style } from './Style';
 const {TextField} = Incubator;
 
-export default function Home({navigation}) {
+export default function Login({navigation}) {
 
   const [email, setEmail] = useState({ value: '', error: '' })
   const [password, setPassword] = useState({ value: '', error: '' })
@@ -14,7 +14,7 @@ export default function Home({navigation}) {
     console.log(password)
     Alert.alert('Logado com Sucesso!');
 
-    navigation.navigate('Register')
+    navigation.navigate('SignedIn')
   }
 
   return (

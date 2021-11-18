@@ -1,15 +1,13 @@
-import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
-import Home from './src/screens/Home/Index';
-import Login from './src/screens/Login/Index';
-import Register from './src/screens/Register/Index';
+import React, { useEffect } from 'react';
+import { createAppContainer } from 'react-navigation';
+import { AppRegistry, View, StyleSheet } from 'react-native';
 
 import AlunoService from './src/database/services/alunoService';
 import DatabaseInit from './src/database/default';
 
-const Stack = createNativeStackNavigator();
+import { isSignedIn } from "./src/services/auth";
+import { NavigationStackHome } from './src/routes/routes';
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -19,15 +17,26 @@ export default class App extends React.Component {
     })
   }
 
+  state = {
+    signed: false,
+    signLoaded: false,
+  };
+
+  componentDidMount() {
+    isSignedIn()
+      .then(res => this.setState({ signed: res, signLoaded: true }))
+      .catch(err => alert("Erro"));
+  }
+
   render() {
-    return (
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Register" component={Register} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    );
+    const { signLoaded, signed } = this.state;
+  
+    if (!signLoaded) {
+      return null;
+    }
+
+    const Layout = createAppContainer(NavigationStackHome(signed));
+
+    return (  <Layout /> )
   }
 }
