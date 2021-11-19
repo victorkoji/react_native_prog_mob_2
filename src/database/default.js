@@ -11,14 +11,27 @@ export default class DatabaseInit {
 
   InitDb() {
     var sql = [
-      `DROP TABLE IF EXISTS aluno;`,
+      `DROP TABLE IF EXISTS student;`,
 
-      `CREATE TABLE IF NOT EXISTS aluno (
+      `DROP TABLE IF EXISTS anwser_questionnaires;`,
+
+      `CREATE TABLE IF NOT EXISTS student (
           id integer primary key autoincrement,
-          nome text
+          name text
         );`,
 
-      `INSERT INTO aluno (nome) VALUES ("Mateus"), ("Victor"), ("Fernando");`
+
+      `CREATE TABLE IF NOT EXISTS anwser_questionnaires (
+        id integer primary key autoincrement,
+        student_id integer,
+        question_1 integer, 
+        question_2 integer, 
+        question_3 integer
+      );`,
+
+      `INSERT INTO student (name) VALUES ("Mateus"), ("Victor"), ("Fernando");`,
+
+      `INSERT INTO anwser_questionnaires (student_id, question_1, question_2, question_3) VALUES (1, "question 1", "question 2", "question 3");`
     ];
 
     db.transaction(

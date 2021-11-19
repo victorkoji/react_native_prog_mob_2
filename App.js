@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { createAppContainer } from 'react-navigation';
-import { AppRegistry, View, StyleSheet } from 'react-native';
 
 import AlunoService from './src/database/services/alunoService';
 import DatabaseInit from './src/database/default';

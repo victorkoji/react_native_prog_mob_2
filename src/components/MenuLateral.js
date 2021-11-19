@@ -6,6 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import Home from '../screens/Home';
 import Questionnaire from '../screens/Questionnaire';
+import AnwserQuestionnaires from '../screens/AnwserQuestionnairies'
 import Register from '../screens/Register';
 import Login from '../screens/Login';
 
@@ -18,6 +19,7 @@ export default function MenuLateral({ navigation }) {
         <Drawer.Screen name="Tela Inicial" component={Home} />
         <Drawer.Screen name="Questionário" component={Questionnaire} />
         <Drawer.Screen name="Registro" component={Register} />
+        <Drawer.Screen name="AnwserQuestionnaires" component={AnwserQuestionnaires} />
       </Drawer.Navigator>
     </NavigationContainer>
   );

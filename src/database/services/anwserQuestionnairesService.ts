@@ -1,16 +1,14 @@
-import { Student } from '../models/Student'
 import { DatabaseConnection } from '../connection'
+import { AnwserQuestionnaires } from '../models/AnwserQuestionnaires';
 
-const table = "student"
+const table = "anwser_questionnaires"
 const db = DatabaseConnection.getConnection()
 
-export default class StudentService {
-  static addData(param: Student) {
+export default class anwserQuestionnairesService {
+  static addData(param: AnwserQuestionnaires) {
     return new Promise((resolve, reject) => db.transaction(
       tx => {
-        tx.executeSql(`insert into ${table} (name) 
-                values (?)`,
-          [param.name],
+        tx.executeSql(`insert into ${table} (student_id, questionnaire_id, question_1, question_2, question_3) values (?)`, [ param.student.id, param.questionnaire.id, param.answer.question_1, param.answer.question_2, param.answer.question_3 ],
           (_, { insertId, rows }) => {
             console.log("id insert: " + insertId);
             resolve(insertId)
@@ -35,9 +33,9 @@ export default class StudentService {
       });
   }
 
-  static updateById(param: Student) {
+  static updateById(param: AnwserQuestionnaires) {
     return new Promise((resolve, reject) => db.transaction(tx => {
-      tx.executeSql(`update ${table} set name = ? where id = ?;`, [param.name, param.id], () => {
+      tx.executeSql(`update ${table} set nome = ? where id = ?;`, [ param.student.id, param.questionnaire.id, param.answer.question_1, param.answer.question_2, param.answer.question_3 ], () => {
       }), (sqlError) => {
         console.log(sqlError);
       }
@@ -62,7 +60,8 @@ export default class StudentService {
 
   static findAll() {
     return new Promise((resolve, reject) => db.transaction(tx => {
-      tx.executeSql(`select * from ${table}`, [], (_, { rows }) => {
+      tx.executeSql(`select * from ${table} aws INNER JOIN student s ON aws.student_id = s.id`, [], (_, { rows }) => {
+        console.log('LOG =>', rows)
         resolve(rows)
       }), (sqlError) => {
         console.log(sqlError);
