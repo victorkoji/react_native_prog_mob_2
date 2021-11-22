@@ -1,10 +1,17 @@
 import React, { Component } from 'react'
+import { isAuthenticated } from '../database/services/auth';
 
 const AuthContext = React.createContext()
 
 class AuthProvider extends Component {
   state = {
     logged: false,
+  }
+
+  componentDidMount() {
+    isAuthenticated()
+      .then(logged => this.setState({ logged }))
+      .catch(err => alert("Erro"));
   }
 
   setLogged = (logged) => {

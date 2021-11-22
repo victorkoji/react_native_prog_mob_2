@@ -20,7 +20,7 @@ export default function Login({navigation}) {
         const user = await UserService.findByEmail(email);
 
         if(validatePassword(password, user.password)){
-          onSignIn();
+          onSignIn(user);
           setLogged(true)
         }else{
           Alert.alert('Usuário ou senha inválida!');

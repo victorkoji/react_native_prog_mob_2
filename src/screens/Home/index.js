@@ -1,17 +1,17 @@
 import React from 'react';
 
 import { View } from 'react-native';
-import { Button, Checkbox, Assets, Text, Colors, Spacings } from 'react-native-ui-lib';
+import { Button } from 'react-native-ui-lib';
+import { Title } from 'react-native-paper';
 
 import { Style } from './Style';
 
 export default function Home({ navigation }) {
   return (
     <View style={Style.container}>
-      <Button
-        label="Sair"
-        onPress={() => navigation.navigate('SignedOut')}
-      />
+
+      <Title>Bem-vindo ao EDANE</Title>
+
     </View>
   );
 }

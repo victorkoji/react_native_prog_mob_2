@@ -1,4 +1,5 @@
 import React from 'react';
+import { AppRegistry } from 'react-native';
 
 import AlunoService from './src/database/services/alunoService';
 import DatabaseInit from './src/database/default';
@@ -28,3 +29,5 @@ export default class App extends React.Component {
     )
   }
 }
+
+AppRegistry.registerComponent('main', () => App);
