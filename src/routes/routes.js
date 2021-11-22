@@ -1,24 +1,24 @@
-// src/routes.js
-
-import { createStackNavigator } from 'react-navigation-stack';
+import * as React from 'react';
 
 import Login from "../screens/Login";
 import MenuLateral from "../components/MenuLateral";
+import { useContext } from 'react';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import AuthContext from '../contexts/AuthContext';
 
-export const NavigationStackHome = (signedIn = false) => {
+const NavigationStack = createNativeStackNavigator();
 
-  return createStackNavigator(
-    {
-      SignedIn: { screen: MenuLateral },
-      SignedOut: { screen: Login },
-    },
-    {
-      headerMode: "none",
-      mode: "modal",
-      initialRouteName: signedIn ? "SignedIn" : "SignedOut",
-      navigationOptions: {
-        gesturesEnabled: false,
-      },
-    }
-  );
+export default function NavigationStackHome(signedIn = false){
+  const { logged, setLogged } = useContext(AuthContext);
+
+  return (
+    <NavigationStack.Navigator screenOptions={{headerShown: false}}>
+      {(logged === false)
+          // If not logged in, the user will be shown this route
+          ? <NavigationStack.Screen name="SignedOut" component={Login} />
+          // When logged in, the user will be shown this route
+          : <NavigationStack.Screen name="SignedIn" component={MenuLateral} />
+      }
+    </NavigationStack.Navigator>
+  )
 };

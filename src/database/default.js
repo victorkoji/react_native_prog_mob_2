@@ -11,15 +11,23 @@ export default class DatabaseInit {
 
   InitDb() {
     var sql = [
+      `DROP TABLE IF EXISTS users;`,
+
       `DROP TABLE IF EXISTS student;`,
 
       `DROP TABLE IF EXISTS anwser_questionnaires;`,
 
-      `CREATE TABLE IF NOT EXISTS student (
-          id integer primary key autoincrement,
-          name text
-        );`,
+      `CREATE TABLE IF NOT EXISTS users (
+        id integer primary key autoincrement,
+        email text UNIQUE,
+        password text,
+        tipo_usuario text
+      );`,
 
+      `CREATE TABLE IF NOT EXISTS student (
+        id integer primary key autoincrement,
+        name text
+      );`,
 
       `CREATE TABLE IF NOT EXISTS anwser_questionnaires (
         id integer primary key autoincrement,
@@ -28,6 +36,8 @@ export default class DatabaseInit {
         question_2 integer, 
         question_3 integer
       );`,
+
+      `INSERT INTO users (email, password, tipo_usuario) VALUES ("admin@gmail.com", "21232f297a57a5a743894a0e4a801fc3", "admin");`,
 
       `INSERT INTO student (name) VALUES ("Mateus"), ("Victor"), ("Fernando");`,
 
