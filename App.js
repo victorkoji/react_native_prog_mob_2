@@ -14,9 +14,9 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     new DatabaseInit
-    AlunoService.findAll().then((response) => {
-      console.log(response)
-    })
+    // AlunoService.findAll().then((response) => {
+    //   console.log(response)
+    // })
   }
 
   render() {
@@ -30,4 +30,4 @@ export default class App extends React.Component {
   }
 }
 
-AppRegistry.registerComponent('main', () => App);
+// AppRegistry.registerComponent('main', () => App);

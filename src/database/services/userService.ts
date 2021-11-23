@@ -1,4 +1,4 @@
-import { User } from "../models/User";
+import User from "../models/User";
 import { DatabaseConnection } from "../connection";
 
 const table = "users";
@@ -10,11 +10,12 @@ export default class UserService {
       db.transaction(
         (tx) => {
           tx.executeSql(
-            `insert into ${table} (email, password) 
-                values (?, ?)`,
+            `insert into ${table} (email, password, tipo_usuario) 
+                values (?, ?, ?)`,
             [
               param.email,
-              User.setPassword(param.password)
+              User.setPassword(param.password),
+              param.tipo_usuario
             ],
             (_, { insertId, rows }) => {
               console.log("id insert: " + insertId);

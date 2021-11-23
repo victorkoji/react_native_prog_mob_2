@@ -1,4 +1,4 @@
-export default class Student {
+export default class Admin {
   constructor(id?: number, name?: string, user_id?: number) {
     this.id = id;
     this.name = name;

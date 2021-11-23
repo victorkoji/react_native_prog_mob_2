@@ -1,11 +1,11 @@
-import Student from '../models/Student'
+import Admin from '../models/Admin'
 import { DatabaseConnection } from '../connection'
 
-const table = "student"
+const table = "admin"
 const db = DatabaseConnection.getConnection()
 
-export default class StudentService {
-  static addData(param: Student) {
+export default class AdminService {
+  static addData(param: Admin) {
     return new Promise((resolve, reject) => db.transaction(
       tx => {
         tx.executeSql(`insert into ${table} (name) 
@@ -35,7 +35,7 @@ export default class StudentService {
       });
   }
 
-  static updateById(param: Student) {
+  static updateById(param: Admin) {
     return new Promise((resolve, reject) => db.transaction(tx => {
       tx.executeSql(`update ${table} set name = ? where id = ?;`, [param.name, param.id], () => {
       }), (sqlError) => {

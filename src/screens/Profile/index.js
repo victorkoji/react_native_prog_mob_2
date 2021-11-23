@@ -23,17 +23,16 @@ export default function Profile({ navigation }) {
 
   useEffect(() => {
 
-    async function fetchMyAPI() {
-      let response = await getUserLogged();
-      let user = JSON.parse(response);
+    async function getUser() {
+      let user = await getUserLogged();
+
       setData({
         'email': user.email,
         'password': user.password
       })
     }
 
-    fetchMyAPI()
-
+    getUser()
   }, [])
 
   return (

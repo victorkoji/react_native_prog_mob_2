@@ -15,6 +15,8 @@ export default class DatabaseInit {
 
       `DROP TABLE IF EXISTS student;`,
 
+      `DROP TABLE IF EXISTS admin;`,
+
       `DROP TABLE IF EXISTS anwser_questionnaires;`,
 
       `CREATE TABLE IF NOT EXISTS users (
@@ -26,7 +28,14 @@ export default class DatabaseInit {
 
       `CREATE TABLE IF NOT EXISTS student (
         id integer primary key autoincrement,
-        name text
+        name text,
+        user_id integer
+      );`,
+
+      `CREATE TABLE IF NOT EXISTS admin (
+        id integer primary key autoincrement,
+        name text,
+        user_id integer
       );`,
 
       `CREATE TABLE IF NOT EXISTS anwser_questionnaires (
@@ -37,9 +46,22 @@ export default class DatabaseInit {
         question_3 integer
       );`,
 
-      `INSERT INTO users (email, password, tipo_usuario) VALUES ("admin@gmail.com", "21232f297a57a5a743894a0e4a801fc3", "admin");`,
+      `INSERT INTO users (email, password, tipo_usuario) VALUES 
+        ("mateus@gmail.com", "21232f297a57a5a743894a0e4a801fc3", "admin"),
+        ("victor@gmail.com", "21232f297a57a5a743894a0e4a801fc3", "admin"),
+        ("fernando@gmail.com", "21232f297a57a5a743894a0e4a801fc3", "admin"),
+        ("aluno@gmail.com", "21232f297a57a5a743894a0e4a801fc3", "aluno");
+      `,
 
-      `INSERT INTO student (name) VALUES ("Mateus"), ("Victor"), ("Fernando");`,
+      `INSERT INTO admin (name, user_id) VALUES 
+        ("Mateus", 1), 
+        ("Victor", 2), 
+        ("Fernando", 3);
+      `,
+
+      `INSERT INTO student (name, user_id) VALUES 
+        ("Aluno Teste", 4);
+      `,
 
       `INSERT INTO anwser_questionnaires (student_id, question_1, question_2, question_3) VALUES (1, "question 1", "question 2", "question 3");`
     ];
