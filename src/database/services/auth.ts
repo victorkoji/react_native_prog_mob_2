@@ -20,7 +20,7 @@ export const isAuthenticated = async () => {
 export const getUserLogged = async () => {
   const user = await AsyncStorage.getItem(USER_KEY)
 
-  return user
+  return JSON.parse(user)
 };
 
 export const validatePassword = async (password_request: string, password_user: string) => {
