@@ -56,8 +56,19 @@ export default class UserService {
       db.transaction(
         (tx) => {
           tx.executeSql(
-            `update ${table} set email = ? where id = ?;`,
-            [param.email, param.id],
+            `update ${table} 
+              set 
+                email = ?,
+                password = ?,
+                tipo_usuario = ?,
+              where id = ?;
+            `,
+            [
+              param.email, 
+              param.password, 
+              param.tipo_usuario,
+              param.id
+            ],
             () => {}
           ),
             (sqlError) => {
@@ -79,7 +90,57 @@ export default class UserService {
             `select * from ${table} where id=?`,
             [id],
             (_, { rows }) => {
-              resolve(rows);
+              resolve(rows._array[0]);
+            }
+          ),
+            (sqlError) => {
+              console.log(sqlError);
+            };
+        },
+        (txError) => {
+          console.log(txError);
+        }
+      )
+    );
+  }
+
+  static findByIdWithAluno(id: number) {
+    return new Promise((resolve, reject) =>
+      db.transaction(
+        (tx) => {
+          tx.executeSql(
+            ` select * from ${table} 
+              inner join student on ${table}.id = student.user_id 
+              where ${table}.id=?
+            `,
+            [id],
+            (_, { rows }) => {
+              resolve(rows._array[0]);
+            }
+          ),
+            (sqlError) => {
+              console.log(sqlError);
+            };
+        },
+        (txError) => {
+          console.log(txError);
+        }
+      )
+    );
+  }
+
+  static findByIdWithAdmin(id: number) {
+    return new Promise((resolve, reject) =>
+      db.transaction(
+        (tx) => {
+          tx.executeSql(
+            ` select * from ${table}
+              inner join admin on ${table}.id = admin.user_id 
+              where ${table}.id=?
+            `,
+            [id],
+            (_, { rows }) => {
+              resolve(rows._array[0]);
             }
           ),
             (sqlError) => {

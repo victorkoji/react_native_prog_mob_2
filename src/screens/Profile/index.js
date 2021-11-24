@@ -4,11 +4,7 @@ import {
   Text,
   TextInput,
   View,
-  TouchableOpacity,
-  Alert,
-  ImageBackground,
-  Image,
-  Button
+  TouchableOpacity
 } from "react-native";
 
 import { getUserLogged } from '../../database/services/auth';
@@ -61,10 +57,6 @@ export default function Profile({ navigation }) {
           secureTextEntry
         />
       </View>
-
-      <TouchableOpacity style={Style.loginBtn} onPress={() => onLogin()} >
-        <Text style={Style.loginText}>Salvar</Text>
-      </TouchableOpacity>
 
     </View>
   );

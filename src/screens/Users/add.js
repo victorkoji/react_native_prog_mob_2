@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Text, StyleSheet, View, Alert, ScrollView } from "react-native";
-import { Divider, TextInput, Title } from "react-native-paper";
+import { TextInput, Title } from "react-native-paper";
 import { Colors, Picker } from "react-native-ui-lib";
 
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -41,7 +41,11 @@ const fieldValidationSchema = yup.object().shape({
 
 export default function AddUser() {
   const navigation = useNavigation();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [tipoUsuario, setTipoUsuario] = useState("");
+  const [name, setName] = useState("");
   const {
     register,
     setValue,
@@ -54,22 +58,22 @@ export default function AddUser() {
 
   const onSubmit = async (data) => {
     try {
-      // const user = new User(1, data.email, data.password, data.tipoUsuario);
-      // const user_id = await UserService.addData(user);
+      const user = new User(1, data.email, data.password, data.tipoUsuario);
+      const user_id = await UserService.addData(user);
 
-      // if(data.tipoUsuario == "admin"){
-      //   const admin = await new Admin(data.name, user_id)
-      //   const admin_id = await AdminService.addData(admin);
-      // }else{
-      //   const aluno = await new Aluno(data.name, user_id)
-      //   const aluno_id = await AlunoService.addData(aluno);
-      // }
+      if(data.tipoUsuario == "admin"){
+        const admin = await new Admin(data.name, user_id)
+        const admin_id = await AdminService.addData(admin);
+      }else{
+        const aluno = await new Aluno(data.name, user_id)
+        const aluno_id = await AlunoService.addData(aluno);
+      }
 
-      console.log(getValues("email"))
-      // setValue("password", "")
-      // setValue("passwordConfirmation", "")
-      // setValue("tipoUsuario", "")
-      // setValue("name", "")
+      setEmail("");
+      setPassword("");
+      setPasswordConfirmation("");
+      setTipoUsuario("");
+      setName("");
 
       navigation.navigate("Users");
       Alert.alert("Cadastrado com sucesso!");
@@ -92,24 +96,36 @@ export default function AddUser() {
         <Title>Login</Title>
         <TextField
           label="Email"
+          value={email}
           error={errors?.email}
           placeholder={"Digite seu email"}
-          onChangeText={(text) => setValue("email", text)}
+          onChangeText={(text) => {
+            setEmail(text)
+            setValue("email", text)
+          }}
         />
         <TextField
           label="Senha"
+          value={password}
           secureTextEntry={true}
           error={errors?.password}
           placeholder={"Digite sua senha"}
-          onChangeText={(text) => setValue("password", text)}
+          onChangeText={(text) => {
+            setPassword(text)
+            setValue("password", text)
+          }}
         />
 
         <TextField
           label="Confirmar Senha"
+          value={passwordConfirmation}
           secureTextEntry={true}
           error={errors?.passwordConfirmation}
           placeholder={"Digite sua senha"}
-          onChangeText={(text) => setValue("passwordConfirmation", text)}
+          onChangeText={(text) => {
+            setPasswordConfirmation(text)
+            setValue("passwordConfirmation", text)
+          }}
         />
 
         <Picker
@@ -139,9 +155,13 @@ export default function AddUser() {
 
         <TextField
           label="Nome"
+          value={name}
           error={errors?.name}
           placeholder={"Digite seu nome"}
-          onChangeText={(text) => setValue("name", text)}
+          onChangeText={(text) => {
+            setName(text)
+            setValue("name", text)
+          }}
         />
 
         <TouchableOpacity

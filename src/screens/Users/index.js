@@ -4,8 +4,7 @@ import { FlatList, TouchableOpacity } from "react-native";
 import {
   View,
   ListItem,
-  Text,
-  paper
+  Text
 } from "react-native-ui-lib";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
@@ -76,7 +75,6 @@ export const ListaVazia = () => {
 };
 
 export default function Users() {
-  const [showMenu, setShowMenu] = useState(false);
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
