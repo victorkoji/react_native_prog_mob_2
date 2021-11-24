@@ -17,7 +17,13 @@ export default function Login({navigation}) {
       Alert.alert('Preencha usuário e senha para continuar!');
     } else {
       try {
-        const user = await UserService.findByEmail(email);
+        let user = await UserService.findByEmail(email);
+
+        if(user.tipo_usuario == "admin"){
+          user = await UserService.findByIdWithAdmin(user.id);
+        }else{
+          user = await UserService.findByIdWithAluno(user.id);
+        }
 
         if(validatePassword(password, user.password)){
           onSignIn(user);

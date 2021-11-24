@@ -22,7 +22,7 @@ export default function MenuLateral() {
       <Drawer.Screen name="Users" component={Users} options={{ title: 'Usuários' }} />
       <Drawer.Screen name="Questionnaire" component={Questionnaire} options={{ title: 'Questionário' }} />
       <Drawer.Screen name="Registro" component={Register} />
-      <Drawer.Screen name="AnwserQuestionnaires" component={AnwserQuestionnaires} options={{ title: 'Responder Questionário' }}/>
+      <Drawer.Screen name="AnwserQuestionnaires" component={AnwserQuestionnaires} options={{ title: 'Questionários Respondidos' }}/>
       <Drawer.Screen name="AddUser" component={AddUser} options={{ title: 'Adicionar Usuário' }}/>
     </Drawer.Navigator>
   );

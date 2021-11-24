@@ -4,11 +4,7 @@ import {
   Text,
   TextInput,
   View,
-  TouchableOpacity,
-  Alert,
-  ImageBackground,
-  Image,
-  Button
+  TouchableOpacity
 } from "react-native";
 
 import { getUserLogged } from '../../database/services/auth';

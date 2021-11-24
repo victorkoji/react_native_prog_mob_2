@@ -13,10 +13,7 @@ export default class App extends React.Component {
 
   constructor(props) {
     super(props);
-    new DatabaseInit
-    // AlunoService.findAll().then((response) => {
-    //   console.log(response)
-    // })
+    new DatabaseInit()
   }
 
   render() {
