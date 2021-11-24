@@ -1,105 +1,74 @@
-import React, { Component } from 'react';
-import { View } from 'react-native';
-import {Text, CheckBox, RadioButton, Colors, Button, RadioGroup} from 'react-native-ui-lib';
-import { Style } from './Style';
+import React, { Component } from "react";
+import { FlatList, Alert } from "react-native";
+import {
+    View,
+    Button,
+} from "react-native-ui-lib";
 
-const COLORS = {
-    DEFAULT: {name: 'Black', color: Colors.black},
-};
+import { Questionnaires } from "../../database/models/Questionnaires";
+import anwserQuestionnairesService from "../../database/services/anwserQuestionnairesService";
+import Question from "./components/Question/Question";
+import { Style } from "./Style";
+import {getUserLogged} from "../../database/services/auth.ts";
+import StudentService from "../../database/services/studentService";
+import { AnwserQuestionnaires } from "../../database/models/AnwserQuestionnaires";
+
 
 export default class Questionnaire extends Component {
-    static colors = COLORS;
-    constructor(props) {
-        super(props);
-        this.state = {
-            color: undefined,
-            messageType: undefined,
-            disabledSelectedValue: true
-        };
 
-        this.state2 = {
-            color: undefined,
-            messageType: undefined,
-            disabledSelectedValue: true
-        };
+    state = {
+        questions: [],
+        answers: {}
+    };
 
-        this.state3 = {
-            color: undefined,
-            messageType: undefined,
-            disabledSelectedValue: true
-        };
+    onChangeQuestion = (answers) =>{
+        this.state.answers[answers.key] = answers.value
+        console.log(this.state.answers)
     }
 
-    renderRadioButtonForColorEnum(color) {
+    componentDidMount(){
+        this.setState({questions: new Questionnaires().getFullQuestionnaire()})
+    }
+    
+    renderQuestionnaire() {
         return (
-            
-            <View style={Style.questionnaire} row centerV marginB-5>
-                <Text style={Style.commentQuestions}>
-                Certifique-se de responder adequadamente as perguntas a seguir
-                </Text>
-                <View style={Style.segmentQuestion}>
-                    <Text style={Style.text_question}>
-                    Exemplo Teste 1?
-                    </Text>
-                    <RadioGroup initialValue={this.state.color || null} onValueChange={value => this.setState({color: value})}>
-                        <RadioButton style={Style.radionButtonSize} size={20} value="1" label="Não"/>
-                        <RadioButton style={Style.radionButtonSize} size={20} value="2" label="Não 2"/>
-                        <RadioButton style={Style.radionButtonSize} size={20} value="3" label="Sim"/>
-                        <RadioButton style={Style.radionButtonSize} size={20} value="4" label="Sim 2"/>
-                    </RadioGroup>
-                </View>
-
-                <View style={Style.segmentQuestion}>
-                    <Text style={Style.text_question}>
-                    Exemplo Teste 2?
-                    </Text>
-                    <RadioGroup initialValue={this.state2.color || null} onValueChange={value => this.setState({color: value})}>
-                        <RadioButton style={Style.radionButtonSize} size={20} value="5" label="Não"/>
-                        <RadioButton style={Style.radionButtonSize} size={20} value="6" label="Não 2"/>
-                        <RadioButton style={Style.radionButtonSize} size={20} value="7" label="Sim"/>
-                        <RadioButton style={Style.radionButtonSize} size={20} value="8" label="Sim 2"/>
-                    </RadioGroup>
-                </View>
-                <View style={Style.segmentQuestion}>
-                    <Text style={Style.text_question}>
-                    Exemplo Teste 3?
-                    </Text>
-                    <RadioGroup initialValue={this.state3.color || null} onValueChange={value => this.setState({color: value})}>
-                        <RadioButton style={Style.radionButtonSize} size={20} value="9" label="Não"/>
-                        <RadioButton style={Style.radionButtonSize} size={20} value="10" label="Não 2"/>
-                        <RadioButton style={Style.radionButtonSize} size={20} value="11" label="Sim"/>
-                        <RadioButton style={Style.radionButtonSize} size={20} value="12" label="Sim 2"/>
-                    </RadioGroup>
-                </View>
-
+            <View style={Style.questionnaire}>
+                <Question onChangeQuestion={this.onChangeQuestion} questions={ this.state.questions }/>
+                
                 <View style={Style.btnActionQuestionnaire}>
-                    {/* <Button
-                        label={'Cancelar'}
-                        enableShadow
-                        style={Style.btnConfirmQuestionnaire}
-                    /> */}
                     <Button
                         label="Cancelar"
                         size={Button.sizes.medium}
                         outline
                         style={Style.btnConfirmQuestionnaire}
+                        onPress={() => {
+                            this.props.navigation.navigate("Home");
+                        }}
                     />
                     <Button
                         label={'Confirmar'}
                         enableShadow
                         style={Style.btnConfirmQuestionnaire}
-                    />
+                        onPress={() => 
+                            this.saveSendQuestionnaire()
+                        }
+                        />
                 </View>
-
             </View>
+            
         );
     }
-    
-    render(){
-        return (
-            <View >
-                {this.renderRadioButtonForColorEnum(Questionnaire.colors.DEFAULT)}
-            </View>
-        );
-    };
+
+    saveSendQuestionnaire(){
+        console.log("this.state.answers")
+        console.log(this.state.answers)
+        const user = getUserLogged();
+        const student = StudentService.findByUserId(user.id);
+        const answerQuestionnaire = AnwserQuestionnaires(null, student, this.state.answers)
+        anwserQuestionnairesService().addData(answerQuestionnaire)
+    }
+
+    render() {
+        return this.renderQuestionnaire();
+    }
 }

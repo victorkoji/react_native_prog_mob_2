@@ -72,4 +72,17 @@ export default class StudentService {
     }))
   }
 
+  static findByUserId(id: number){
+    return new Promise((resolve, reject) => db.transaction(tx => {
+      tx.executeSql(`select * from ${table} where id?`, [id], (_, { rows }) => {
+        resolve(rows)
+      }), (sqlError) => {
+        console.log(sqlError);
+      }
+    }, (txError) => {
+      console.log(txError);
+
+    }));
+  }
+
 }

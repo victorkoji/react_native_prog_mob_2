@@ -1,7 +1,7 @@
 import React from 'react';
 import { AppRegistry } from 'react-native';
 
-import AlunoService from './src/database/services/alunoService';
+import StudentService from './src/database/services/studentService';
 import DatabaseInit from './src/database/default';
 import AuthContext, { AuthProvider } from './src/contexts/AuthContext';
 
@@ -14,7 +14,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     new DatabaseInit
-    AlunoService.findAll().then((response) => {
+    StudentService.findAll().then((response) => {
       console.log(response)
     })
   }

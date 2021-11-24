@@ -6,6 +6,7 @@ const db = DatabaseConnection.getConnection()
 
 export default class anwserQuestionnairesService {
   static addData(param: AnwserQuestionnaires) {
+    console.log(AnwserQuestionnaires)
     return new Promise((resolve, reject) => db.transaction(
       tx => {
         tx.executeSql(`insert into ${table} (student_id, questionnaire_id, question_1, question_2, question_3) values (?)`, [ param.student.id, param.questionnaire.id, param.answer.question_1, param.answer.question_2, param.answer.question_3 ],
