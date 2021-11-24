@@ -58,10 +58,6 @@ export default function Profile({ navigation }) {
         />
       </View>
 
-      <TouchableOpacity style={Style.loginBtn} onPress={() => onLogin()} >
-        <Text style={Style.loginText}>Salvar</Text>
-      </TouchableOpacity>
-
     </View>
   );
 }
