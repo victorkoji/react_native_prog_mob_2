@@ -63,7 +63,6 @@ export default class DatabaseInit {
         ("Aluno Teste", 4);
       `,
 
-      `INSERT INTO anwser_questionnaires (student_id, question_1, question_2, question_3) VALUES (1, "question 1", "question 2", "question 3");`
     ];
 
     db.transaction(

@@ -1,4 +1,4 @@
-import { Student } from './Student';
+import Student from './Student';
 import { Questionnaires } from './Questionnaires';
 import StudentService from '../services/studentService';
 

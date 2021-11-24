@@ -59,13 +59,15 @@ export default class Questionnaire extends Component {
         );
     }
 
-    saveSendQuestionnaire(){
+    async saveSendQuestionnaire(){
         console.log("this.state.answers")
         console.log(this.state.answers)
-        const user = getUserLogged();
-        const student = StudentService.findByUserId(user.id);
-        const answerQuestionnaire = AnwserQuestionnaires(null, student, this.state.answers)
-        anwserQuestionnairesService().addData(answerQuestionnaire)
+        const user = await getUserLogged();
+        const student = await StudentService.findByUserId(user.id);
+        const answerQuestionnaire = new AnwserQuestionnaires(null, student, this.state.answers)
+        anwserQuestionnairesService.addData(answerQuestionnaire)
+
+        this.props.navigation.navigate("Home");
     }
 
     render() {

@@ -14,7 +14,7 @@ import User from "../../database/models/User";
 import UserService from "../../database/services/userService";
 
 import Aluno from "../../database/models/Student";
-import AlunoService from "../../database/services/alunoService";
+import AlunoService from "../../database/services/studentService";
 
 import Admin from "../../database/models/Admin";
 import AdminService from "../../database/services/adminService";
