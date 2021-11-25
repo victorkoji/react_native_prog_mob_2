@@ -12,6 +12,7 @@ import { Style } from "./Style";
 import {getUserLogged} from "../../database/services/auth.ts";
 import StudentService from "../../database/services/studentService";
 import { AnwserQuestionnaires } from "../../database/models/AnwserQuestionnaires";
+import { ScrollView } from "react-native-gesture-handler";
 
 
 export default class Questionnaire extends Component {
@@ -32,7 +33,7 @@ export default class Questionnaire extends Component {
     
     renderQuestionnaire() {
         return (
-            <View style={Style.questionnaire}>
+            <ScrollView scrollEnabled={this.state.enableScrollViewScroll} style={Style.questionnaire}>
                 <Question onChangeQuestion={this.onChangeQuestion} questions={ this.state.questions }/>
                 
                 <View style={Style.btnActionQuestionnaire}>
@@ -54,19 +55,17 @@ export default class Questionnaire extends Component {
                         }
                         />
                 </View>
-            </View>
+            </ScrollView>
             
         );
     }
 
     async saveSendQuestionnaire(){
-        console.log("this.state.answers")
-        console.log(this.state.answers)
         const user = await getUserLogged();
-        const student = await StudentService.findByUserId(user.id);
+        const student = await StudentService.findByUserId(user.user_id);
+        console.log(student)
         const answerQuestionnaire = new AnwserQuestionnaires(null, student, this.state.answers)
         anwserQuestionnairesService.addData(answerQuestionnaire)
-
         this.props.navigation.navigate("Home");
     }
 

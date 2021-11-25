@@ -19,6 +19,7 @@ export const Style = StyleSheet.create({
     questionnaire:{
         // backgroundColor: '#F7F7F0',
         // opacity: 37,
+        flexGrow: 1
     },
     commentQuestions:{
         textAlign: 'justify',

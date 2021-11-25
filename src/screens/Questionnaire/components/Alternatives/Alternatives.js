@@ -8,9 +8,13 @@ export default class Alternatives extends React.Component{
     keyAlternativeExtractor = (item) => item.title;
 
     state = {
-
+        enableScrollViewScroll: true,
     }
-    
+    onEnableScroll= (value) => {
+        this.setState({
+            enableScrollViewScroll: value,
+        });
+    };
 
     renderAlternatives(alternative){
         var idQuestion = this.props.questionRef
@@ -26,7 +30,9 @@ export default class Alternatives extends React.Component{
     render(){
         var alternatives = this.props.alternatives
         return (
-            <FlatList
+            <FlatList onTouchStart={() => {
+                    this.onEnableScroll( false );
+                }} 
                 data={alternatives}
                 renderItem={({ item }) => this.renderAlternatives(item)}
                 keyExtractor={this.keyAlternativeExtractor}

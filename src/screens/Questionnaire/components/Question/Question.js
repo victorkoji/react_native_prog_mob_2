@@ -28,7 +28,7 @@ export default class Question extends React.Component{
     render() {
         var questions = this.props.questions
         return (
-            <FlatList
+            <FlatList nestedScrollEnabled 
                 data={questions}
                 renderItem={({ item }) => this.renderQuestion(item)}
                 keyExtractor={this.keyExtractor}
